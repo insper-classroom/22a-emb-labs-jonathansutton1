@@ -14,20 +14,20 @@
 #define BUT_PIO      PIOA
 #define BUT_PIO_ID   ID_PIOA
 #define BUT_IDX      11
-#define BUT_IDX_MASK (1 << BUT_IDX) 
+#define BUT_IDX_MASK (1 << BUT_IDX)
 
 #define BUT1_PIO           PIOD
 #define BUT1_PIO_ID        ID_PIOD
 #define BUT1_PIO_IDX       28
-#define BUT1_PIO_IDX_MASK (1u << BUT1_PIO_IDX) 
+#define BUT1_PIO_IDX_MASK (1u << BUT1_PIO_IDX)
 
 volatile char but_flag;
 
 void but_callback (void) {
 	if (pio_get(BUT1_PIO, PIO_INPUT, BUT1_PIO_IDX_MASK)) {
 		but_flag = 0;
-		} 
-		else {
+	}
+	else {
 		but_flag = 1;
 	}
 }
@@ -57,7 +57,7 @@ void init(void){
 	// para que possamos controlar o LED.
 	pmc_enable_periph_clk(LED_PIO_ID);
 	pmc_enable_periph_clk(BUT_PIO_ID);
-	pmc_enable_periph_clk(BUT1_PIO_ID);	
+	pmc_enable_periph_clk(BUT1_PIO_ID);
 
 	pio_set_input(BUT1_PIO, BUT1_PIO_IDX_MASK, PIO_DEFAULT);
 	pio_pull_up(BUT1_PIO, BUT1_PIO_IDX_MASK, 1);
@@ -89,29 +89,27 @@ int main (void)
 	delay_init();
 	init();
 
-  // Init OLED
+	// Init OLED
 	gfx_mono_ssd1306_init();
-  	
+	
 	int delay = 200;
 	char str[128];
-
-  /* Insert application code here, after the board has been initialized. */
+	sprintf(str, "%d", delay);
+	gfx_mono_draw_string(str, 0,0, &sysfont);
+	/* Insert application code here, after the board has been initialized. */
 	while(1) {
-		sprintf(str, "%d", delay);
-		gfx_mono_draw_string(delay, 10,10, &sysfont);
-		
 		if(but_flag){
 			delay_ms(1000);
 			if(but_flag){                      //se ele ainda continua pressionado após um delay
 				delay += 100;
 				sprintf(str, "%d", delay);
-				gfx_mono_draw_string(delay,30,10, &sysfont);
+				gfx_mono_draw_string(str,0,0, &sysfont);
 				pisca_led(30,delay);
 			}
 			else{
 				delay -= 100;
 				sprintf(str, "%d", delay);
-				gfx_mono_draw_string(delay,30,10, &sysfont);
+				gfx_mono_draw_string(str,0,0, &sysfont);
 				pisca_led(30,delay);
 			}
 		}
