@@ -243,22 +243,19 @@ int main (void){
 	board_init();
 	sysclk_init();
 	delay_init();
-	//Led da placa Tc- 5hz
+	////////////////////////////////////////////////////
 	LED_init(1);
 	TC_init(TC1, ID_TC3, 0, 5);
 	tc_start(TC1, 0);
 	////////////////////////////
-	//Led1 Tc- 4hz
 	LED1_init(1);
 	TC_init(TC0, ID_TC1, 1, 4);
 	tc_start(TC0, 1);
 	////////////////////////////
-	//Led2  invertendo estado a cada 4 segundos - RTT
 	WDT->WDT_MR = WDT_MR_WDDIS;
 	io_init();
 	RTT_init(4, 16, RTT_MR_ALMIEN);
 	///////////////////////////
-	//Led3 RTC
 	LED3_init(1);
 	calendar rtc_initial = {2018, 3, 19, 12, 15, 45 ,1};
 	RTC_init(RTC, ID_RTC, rtc_initial, RTC_IER_ALREN);
@@ -274,7 +271,7 @@ int main (void){
 	
 	// Escreve na tela um circulo e um texto
 	gfx_mono_draw_filled_circle(20, 16, 16, GFX_PIXEL_SET, GFX_WHOLE);
-	gfx_mono_draw_string("Lab4", 50,16, &sysfont);
+	gfx_mono_draw_string("test", 50,16, &sysfont);
 
 	/* Insert application code here, after the board has been initialized. */
 	while(1) {

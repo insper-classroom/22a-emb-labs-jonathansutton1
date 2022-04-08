@@ -5119,7 +5119,7 @@ int main (void){
   401e30:	4b48      	ldr	r3, [pc, #288]	; (401f54 <main+0x12c>)
   401e32:	4798      	blx	r3
 	delay_init();
-	//Led da placa Tc- 5hz
+	////////////////////////////////////////////////////
 	LED_init(1);
   401e34:	2001      	movs	r0, #1
   401e36:	4b48      	ldr	r3, [pc, #288]	; (401f58 <main+0x130>)
@@ -5138,7 +5138,6 @@ int main (void){
   401e4c:	4c45      	ldr	r4, [pc, #276]	; (401f64 <main+0x13c>)
   401e4e:	47a0      	blx	r4
 	////////////////////////////
-	//Led1 Tc- 4hz
 	LED1_init(1);
   401e50:	2001      	movs	r0, #1
   401e52:	4b45      	ldr	r3, [pc, #276]	; (401f68 <main+0x140>)
@@ -5155,7 +5154,6 @@ int main (void){
   401e64:	4628      	mov	r0, r5
   401e66:	47a0      	blx	r4
 	////////////////////////////
-	//Led2  invertendo estado a cada 4 segundos - RTT
 	WDT->WDT_MR = WDT_MR_WDDIS;
   401e68:	f44f 4200 	mov.w	r2, #32768	; 0x8000
   401e6c:	4b40      	ldr	r3, [pc, #256]	; (401f70 <main+0x148>)
@@ -5170,7 +5168,6 @@ int main (void){
   401e7e:	4b3e      	ldr	r3, [pc, #248]	; (401f78 <main+0x150>)
   401e80:	4798      	blx	r3
 	///////////////////////////
-	//Led3 RTC
 	LED3_init(1);
   401e82:	2001      	movs	r0, #1
   401e84:	4b3d      	ldr	r3, [pc, #244]	; (401f7c <main+0x154>)
@@ -5255,7 +5252,7 @@ int main (void){
   401f0a:	2014      	movs	r0, #20
   401f0c:	4c24      	ldr	r4, [pc, #144]	; (401fa0 <main+0x178>)
   401f0e:	47a0      	blx	r4
-	gfx_mono_draw_string("Lab4", 50,16, &sysfont);
+	gfx_mono_draw_string("test", 50,16, &sysfont);
   401f10:	4b24      	ldr	r3, [pc, #144]	; (401fa4 <main+0x17c>)
   401f12:	2210      	movs	r2, #16
   401f14:	2132      	movs	r1, #50	; 0x32
@@ -5943,7 +5940,7 @@ int main (void){
   402e74:	00200010 00100010 00100020 00200010     .. ..... ..... .
   402e84:	00000000 000007e2 00000003 00000013     ................
   402e94:	0000000c 0000000f 0000002d 00000001     ........-.......
-  402ea4:	3462614c 00000000                       Lab4....
+  402ea4:	74736574 00000000                       test....
 
 00402eac <_global_impure_ptr>:
   402eac:	20400020                                 .@ 
